@@ -71,6 +71,13 @@
         android:key="qs_theming"
         android:title="@string/qs_theming_title">
 
+        <!-- Custom QS header image -->
+        <Preference
+            android:key="custom_header"
+            android:fragment="com.blissroms.blissify.fragments.themes.QsCustomHeaderSettings"
+            android:title="@string/custom_header_title"
+            android:summary="@string/custom_header_summary" />
+
     <com.bliss.support.preferences.SystemSettingListPreference
         android:key="qs_tile_style"
         android:title="@string/qs_tile_style_title"
