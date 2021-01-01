@@ -31,6 +31,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.preference.*;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
+import com.bliss.settings.display.AccentColorPreferenceController;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import com.android.settings.R;
@@ -145,6 +146,7 @@ public class Themes extends DashboardFragment  implements
     private static List<AbstractPreferenceController> buildPreferenceControllers(
             Context context, Lifecycle lifecycle, Fragment fragment) {
         final List<AbstractPreferenceController> controllers = new ArrayList<>();
+        controllers.add(new AccentColorPreferenceController(context));
         controllers.add(new OverlayCategoryPreferenceController(context,
                 "android.theme.customization.accent_color"));
         controllers.add(new OverlayCategoryPreferenceController(context,

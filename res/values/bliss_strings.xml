@@ -580,6 +580,9 @@
     <string name="qs_bg_use_new_tint">Tint QS tiles using accent color</string>
     <string name="qs_bg_use_new_tint_summary">Enable the accent color tint on the QS tiles</string>
 
+    <!-- Accent color picker -->
+    <string name="accent_color_title">Accent color picker</string>
+
     <!-- QS tile styles -->
     <string name="qs_tile_style_title">QS tile style</string>
     <string name="qs_tile_style_pick">Pick your QS Style</string>
