@@ -28,7 +28,7 @@ import android.provider.SearchIndexableResource;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.provider.Settings;
-import com.android.internal.util.custom.FodUtils;
+import com.android.internal.util.bliss.FodUtils;
 import com.android.settings.R;
 
 import android.os.SystemProperties;
