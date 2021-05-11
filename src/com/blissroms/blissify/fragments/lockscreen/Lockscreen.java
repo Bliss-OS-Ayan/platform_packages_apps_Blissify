@@ -71,8 +71,7 @@ public class Lockscreen extends SettingsPreferenceFragment implements
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.blissify_lockscreen);
-        PreferenceScreen prefSet = getPreferenceScreen();
-
+        PreferenceScreen prefScreen = getPreferenceScreen();
         PreferenceCategory overallPreferences = (PreferenceCategory) findPreference("fod_category");
         mResolver = getActivity().getContentResolver();
         Resources resources = getResources();
@@ -95,7 +94,7 @@ public class Lockscreen extends SettingsPreferenceFragment implements
             overallPreferences.removePreference(AnimaListPref);
         }
 
-        if (!getResources().getBoolean(com.android.internal.R.bool.config_supportsInDisplayFingerprint)) {
+        if (!getResources().getBoolean(com.android.internal.R.bool.config_needCustomFODView)) {
             prefScreen.removePreference(findPreference("fod_category"));
         }
 
