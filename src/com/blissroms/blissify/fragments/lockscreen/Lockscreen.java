@@ -64,8 +64,10 @@ public class Lockscreen extends SettingsPreferenceFragment implements
 
     private static final String LOCKSCREEN_CATEGORY = "lockscreen_category";
     private static final String LOCKSCREEN_FOD_CATEGORY = "lockscreen_fod_category";
+    private static final String LOCKSCREEN_BLUR = "lockscreen_blur";
     private ContentResolver mResolver;
     private Preference FODSettings;
+    private Preference mLockscreenBlur;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -78,7 +80,10 @@ public class Lockscreen extends SettingsPreferenceFragment implements
         if (!getResources().getBoolean(com.android.internal.R.bool.config_needCustomFODView)) {
             prefScreen.removePreference(FODSettings);
         }
-
+        mLockscreenBlur = (Preference) findPreference(LOCKSCREEN_BLUR);
+        if (!BlissUtils.supportsBlur()) {
+            prefScreen.removePreference(mLockscreenBlur);
+        }
     }
 
     @Override

@@ -50,6 +50,15 @@
         android:defaultValue="25"
         settings:units="dp" />
 
+    <com.bliss.support.preferences.SystemSettingSeekBarPreference
+        android:key="lockscreen_blur"
+        android:title="@string/lockscreen_blur_title"
+        android:summary="@string/lockscreen_blur_summary"
+        android:defaultValue="0"
+        android:max="100"
+        settings:min="0"
+        settings:units="%" />
+
    </PreferenceCategory>
 
     <com.bliss.support.preferences.SystemSettingSwitchPreference
