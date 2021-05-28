@@ -16,6 +16,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="system_settings"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/blissify_system_category">
 
 	<!-- UI Customizations -->
@@ -155,6 +156,14 @@
 		        android:title="@string/toast_icon_title"
 		        android:summary="@string/toast_icon_summary"
 		        android:defaultValue="false" />
+
+                <com.bliss.support.preferences.SystemSettingSeekBarPreference
+                        android:key="power_menu_bg_alpha"
+                        android:title="@string/power_menu_alpha_title"
+                        android:defaultValue="255"
+                        android:max="255"
+                        settings:min="0"
+                        settings:units="" />
 
 		<com.bliss.support.preferences.SystemSettingSwitchPreference
 		    android:key="fingerprint_success_vib"
