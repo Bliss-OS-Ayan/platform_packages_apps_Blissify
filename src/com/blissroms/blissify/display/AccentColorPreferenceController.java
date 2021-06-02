@@ -28,7 +28,7 @@ import androidx.preference.PreferenceScreen;
 import com.android.settings.R;
 import com.android.settingslib.core.AbstractPreferenceController;
 
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
+import com.bliss.support.colorpicker.ColorPickerPreference;
 
 public class AccentColorPreferenceController extends AbstractPreferenceController implements
         Preference.OnPreferenceChangeListener {
@@ -72,8 +72,8 @@ public class AccentColorPreferenceController extends AbstractPreferenceControlle
         }
         mAccentColor.setNewPreviewColor(intColor);
         if (hexColor.equals("#ff1a73e8"))
-            mAccentColor.setCustomColorPreview(mContext.getResources()
-                    .getColor(R.color.ancient_icon_tint_color));
+            mAccentColor.setPreviewColor(mContext.getResources()
+                    .getColor(R.color.bliss_icon_tint_color));
     }
 
     @Override

@@ -31,7 +31,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.preference.*;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
-import com.bliss.settings.display.AccentColorPreferenceController;
+import com.blissroms.blissify.display.AccentColorPreferenceController;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import com.android.settings.R;
