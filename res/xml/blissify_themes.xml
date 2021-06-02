@@ -13,6 +13,7 @@
 -->
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:key="themes_category"
     android:title="@string/blissify_themes_title">
 
@@ -25,7 +26,7 @@
         android:key="aosp_theming"
         android:title="@string/aosp_theming_title">
 
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
+        <com.bliss.support.colorpicker.ColorPickerPreference
             android:key="accent_color"
             android:title="@string/accent_color_title"
             android:defaultValue="0xFF1A73E8"

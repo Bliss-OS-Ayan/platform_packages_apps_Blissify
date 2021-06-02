@@ -788,4 +788,5 @@
     <!-- QS Footer Text -->
     <string name="qs_footer_text_title">QS footer text</string>
     <string name="qs_footer_text_summary">Display text at bottom of QS panel</string>
+    <string name="default_string">Default</string>
 </resources>
