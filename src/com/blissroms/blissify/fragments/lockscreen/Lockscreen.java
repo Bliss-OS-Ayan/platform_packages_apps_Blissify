@@ -86,7 +86,8 @@ public class Lockscreen extends SettingsPreferenceFragment implements
         ParcelFileDescriptor pfd = manager.getWallpaperFile(WallpaperManager.FLAG_LOCK);
         mLockscreenBlur = (Preference) findPreference(LOCKSCREEN_BLUR);
         if (!BlissUtils.supportsBlur() || pfd != null) {
-            prefScreen.removePreference(mLockscreenBlur);
+            mLockscreenBlur.setEnabled(false);
+            mLockscreenBlur.setSummary(getString(R.string.lockscreen_blur_disabled));
         }
     }
 
