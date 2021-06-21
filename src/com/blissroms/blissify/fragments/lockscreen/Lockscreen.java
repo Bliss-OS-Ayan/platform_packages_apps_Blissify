@@ -42,6 +42,7 @@ import androidx.preference.SwitchPreference;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
+import com.android.internal.util.bliss.BlissUtils;
 
 import java.util.Locale;
 import android.text.TextUtils;
@@ -63,6 +64,7 @@ import java.util.Collections;
 @SearchIndexable
 public class Lockscreen extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener, Indexable {
+    private Context mContext;
 
     private static final String LOCKSCREEN_CATEGORY = "lockscreen_category";
     private static final String LOCKSCREEN_FOD_CATEGORY = "lockscreen_fod_category";
