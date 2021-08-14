@@ -1093,5 +1093,9 @@
 
     <!-- Brightness slider styles -->
     <string name="slider_styles_title">Brightness slider style</string>
+    <string name="slider_default">Default</string>
+    <string name="slider_oos">OOS</string>
+    <string name="slider_aosp">Aosp</string>
     <string name="slider_rui">RUI</string>
+    <string name="slider_a12">A12</string>
 </resources>
