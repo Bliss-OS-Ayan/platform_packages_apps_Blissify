@@ -63,7 +63,8 @@ import com.android.settingslib.core.lifecycle.Lifecycle;
 import com.android.settingslib.search.SearchIndexable;
 import com.blissroms.blissify.fragments.themes.SystemThemePreferenceController;
 import com.bliss.support.colorpicker.ColorPickerPreference;
-import com.bliss.support.preference.SecureSettingSwitchPreference;
+import com.bliss.support.preferences.SecureSettingSwitchPreference;
+import com.bliss.support.preferences.CustomSeekBarPreference;
 
 import com.android.internal.util.bliss.BlissUtils;
 import com.android.internal.util.bliss.ThemesUtils;
@@ -124,6 +125,28 @@ public class Themes extends DashboardFragment  implements
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
 
+        Resources res = null;
+        Context ctx = getContext();
+        float density = Resources.getSystem().getDisplayMetrics().density;
+
+        try {
+            res = ctx.getPackageManager().getResourcesForApplication("com.android.systemui");
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Rounded Corner Radius
+        mCornerRadius = (CustomSeekBarPreference) findPreference(SYSUI_ROUNDED_SIZE);
+        int resourceIdRadius = (int) ctx.getResources().getDimension(com.android.internal.R.dimen.rounded_corner_radius);
+        int cornerRadius = Settings.Secure.getIntForUser(ctx.getContentResolver(), Settings.Secure.SYSUI_ROUNDED_SIZE,
+                ((int) (resourceIdRadius / density)), UserHandle.USER_CURRENT);
+        mCornerRadius.setValue(cornerRadius);
+        mCornerRadius.setOnPreferenceChangeListener(this);
+
+        // Rounded use Framework Values
+        mRoundedFwvals = (SecureSettingSwitchPreference) findPreference(SYSUI_ROUNDED_FWVALS);
+        mRoundedFwvals.setOnPreferenceChangeListener(this);
+
         mNavbarPicker = (ListPreference) findPreference(PREF_NAVBAR_STYLE);
         int navbarStyleValues = getOverlayPosition(ThemesUtils.NAVBAR_STYLES);
         if (navbarStyleValues != -1) {
@@ -146,28 +169,6 @@ public class Themes extends DashboardFragment  implements
         mSlider = (SystemSettingListPreference) findPreference(SLIDER_STYLE);
         mCustomSettingsObserver.observe();
     }
-
-        Resources res = null;
-        Context ctx = getContext();
-        float density = Resources.getSystem().getDisplayMetrics().density;
-
-        try {
-            res = ctx.getPackageManager().getResourcesForApplication("com.android.systemui");
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // Rounded Corner Radius
-        mCornerRadius = (CustomSeekBarPreference) findPreference(SYSUI_ROUNDED_SIZE);
-        int resourceIdRadius = (int) ctx.getResources().getDimension(com.android.internal.R.dimen.rounded_corner_radius);
-        int cornerRadius = Settings.Secure.getIntForUser(ctx.getContentResolver(), Settings.Secure.SYSUI_ROUNDED_SIZE,
-                ((int) (resourceIdRadius / density)), UserHandle.USER_CURRENT);
-        mCornerRadius.setValue(cornerRadius);
-        mCornerRadius.setOnPreferenceChangeListener(this);
-
-        // Rounded use Framework Values
-        mRoundedFwvals = (SecureSettingSwitchPreference) findPreference(SYSUI_ROUNDED_FWVALS);
-        mRoundedFwvals.setOnPreferenceChangeListener(this);
 
     private int getOverlayPosition(String[] overlays) {
         int position = -1;
