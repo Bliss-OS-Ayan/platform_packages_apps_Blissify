@@ -1218,7 +1218,6 @@
     <string name="title_activity_bliss_recents_settings">Recents</string>
  
     <!-- Accent presets -->
-    <string name="default_string">Default</string>
     <string name="custom_string">Custom</string>
     <string name="accent_preset_0">Bliss</string>
     <string name="accent_preset_1">BlueMonday</string>
