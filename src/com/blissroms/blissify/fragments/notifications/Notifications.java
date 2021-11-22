@@ -13,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.blissroms.blissify.fragments.lockscreen;
+package com.blissroms.blissify.fragments.notifications;
 
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -24,56 +23,40 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.UserHandle;
-import android.provider.SearchIndexableResource;
 import android.content.ContentResolver;
 import android.content.res.Resources;
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import com.android.settings.R;
 
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
-import androidx.preference.PreferenceGroup;
-import androidx.preference.PreferenceCategory;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.SwitchPreference;
-
-import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settingslib.search.Indexable;
-import com.android.settingslib.search.SearchIndexable;
-
-import java.util.Locale;
-import android.text.TextUtils;
-import android.view.View;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
-import android.util.Log;
-import android.hardware.fingerprint.FingerprintManager;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+
+import com.android.internal.util.bliss.BlissUtils;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Collections;
 
-@SearchIndexable
-public class Lockscreen extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener, Indexable {
-
-    private static final String PIXEL_CATEGORY = "pixel_category";
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
+public class Notifications extends SettingsPreferenceFragment
+        implements Preference.OnPreferenceChangeListener {
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.blissify_lockscreen);
-        PreferenceScreen prefSet = getPreferenceScreen();
+        addPreferencesFromResource(R.xml.blissify_notifications);
     }
 
     @Override
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        return false;
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        return true;
     }
 
     @Override
@@ -90,7 +73,7 @@ public class Lockscreen extends SettingsPreferenceFragment implements
                             new ArrayList<SearchIndexableResource>();
 
                     SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.blissify_lockscreen;
+                    sir.xmlResId = R.xml.blissify_notifications;
                     result.add(sir);
                     return result;
                 }
@@ -101,5 +84,4 @@ public class Lockscreen extends SettingsPreferenceFragment implements
                     return keys;
                 }
     };
-
 }

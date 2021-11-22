@@ -16,39 +16,40 @@
 
 package com.blissroms.blissify.fragments.qs;
 
-import android.content.Context;
-import android.content.ContentResolver;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Resources;
-import android.database.ContentObserver;
+import com.android.internal.logging.nano.MetricsProto;
+
 import android.os.Bundle;
-import android.os.Handler;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.UserHandle;
-import android.os.RemoteException;
-import android.os.ServiceManager;
-import androidx.preference.Preference;
-import androidx.preference.ListPreference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceScreen;
-import androidx.preference.Preference.OnPreferenceChangeListener;
+import android.provider.SearchIndexableResource;
+import android.content.ContentResolver;
+import android.content.res.Resources;
 import android.provider.Settings;
-import android.util.Log;
-import android.view.WindowManagerGlobal;
-import android.view.IWindowManager;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.android.settings.R;
+
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.SwitchPreference;
+
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.Indexable;
+import com.android.settingslib.search.SearchIndexable;
 
 import java.util.Locale;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.android.settings.R;
-import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
-import com.android.settings.Utils;
-
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.SearchIndexable;
-import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.Utils;
+import android.util.Log;
+import android.hardware.fingerprint.FingerprintManager;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -56,28 +57,22 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 
-import com.android.internal.logging.nano.MetricsProto;
-
-@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
+@SearchIndexable
 public class QuickSettings extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener {
+        OnPreferenceChangeListener, Indexable {
 
-    private static final String QS_CATEGORY = "qs_category";
+    private static final String PIXEL_CATEGORY = "pixel_category";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.blissify_qs);
-        setRetainInstance(true);
-        final ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefSet = getPreferenceScreen();
-
     }
 
-     @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        ContentResolver resolver = getActivity().getContentResolver();
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
         return false;
     }
 
@@ -86,11 +81,25 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         return MetricsProto.MetricsEvent.BLISSIFY;
     }
 
-    /**
-     * For Search
-     */
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
 
-    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider(R.xml.blissify_qs);
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.blissify_qs;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+                }
+    };
 
 }
