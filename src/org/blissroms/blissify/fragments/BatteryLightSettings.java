@@ -33,7 +33,7 @@ import com.android.settings.SettingsPreferenceFragment;
 
 import com.bliss.support.preferences.SystemSettingSwitchPreference;
 
-import com.bliss.support.preferences.colorpicker.ColorPickerPreference;
+import com.bliss.support.colorpicker.ColorPickerPreference;
 
 public class BatteryLightSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
