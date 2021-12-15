@@ -278,9 +278,7 @@ public class Buttons extends ActionFragment implements OnPreferenceChangeListene
             }, 1500);
             return true;
         }
-            return false;
-        }
-        return true;
+        return false;
     }
 
     @Override
