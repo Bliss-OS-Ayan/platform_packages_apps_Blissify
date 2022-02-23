@@ -22,7 +22,7 @@ import android.provider.Settings;
 
 import com.bliss.support.preferences.SystemSettingsStore;
 
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
+import com.bliss.support.colorpicker.ColorPickerPreference;
 
 public class SystemSettingColorPickerPreference extends ColorPickerPreference {
 

@@ -129,6 +129,13 @@ public class Lockscreen extends SettingsPreferenceFragment implements
             setPickerIcon(customIconURI);
         }
 
+        boolean udfpsResPkgInstalled = BlissUtils.isPackageInstalled(getContext(),
+                "org.bliss.udfps.resources");
+        PreferenceCategory udfps = (PreferenceCategory) prefSet.findPreference("udfps_category");
+        if (!udfpsResPkgInstalled) {
+            prefSet.removePreference(udfps);
+        }
+
         mCustomFodIcon = (SystemSettingSwitchPreference) findPreference(CUSTOM_FOD_ICON_KEY);
         boolean val = Settings.System.getIntForUser(getActivity().getContentResolver(),
                 Settings.System.OMNI_CUSTOM_FP_ICON_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
@@ -196,12 +203,6 @@ public class Lockscreen extends SettingsPreferenceFragment implements
                 break;
         }
 
-        boolean udfpsResPkgInstalled = BlissUtils.isPackageInstalled(getContext(),
-                "org.bliss.udfps.resources");
-        PreferenceCategory udfps = (PreferenceCategory) prefSet.findPreference("udfps_category");
-        if (!udfpsResPkgInstalled) {
-            prefSet.removePreference(udfps);
-        }
     }
 
     @Override
