@@ -29,6 +29,7 @@
 
     <!-- General strings -->
     <string name="default_string">Default</string>
+    <string name="general_title">General</string>
     <string name="search">Search</string>
     <string name="search_apps">Search apps</string>
 
@@ -656,6 +657,9 @@
     <!-- Keyguard force small clock -->
     <string name="lockscreen_small_clock_title">Force small clock</string>
     <string name="lockscreen_small_clock_summary">Don\'t switch to the big clock when there are no notifications</string>
+
+    <!-- Notification light -->
+    <string name="notification_light_settings">Notification light</string>
 
     <!-- Screen off animation -->
     <string name="screen_off_animation_title">Screen off animation</string>

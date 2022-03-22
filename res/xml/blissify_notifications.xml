@@ -77,8 +77,28 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="notifications_general_category"
+        android:title="@string/general_title">
+
+        <com.bliss.support.preferences.SystemSettingSwitchPreference
+           android:key="notification_guts_kill_app_button"
+           android:title="@string/notification_guts_kill_app_button_title"
+           android:summary="@string/notification_guts_kill_app_button_summary"
+           android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="led"
         android:title="@string/light_settings_header">
+
+        <Preference
+            android:key="notification_light"
+            android:fragment="com.android.settings.applications.manageapplications.ManageApplications"
+            android:title="@string/notification_light_settings">
+            <extra
+                android:name="classname"
+                android:value="com.android.settings.Settings$NotificationAppListActivity" />
 
         <Preference
             android:key="charging_light"
@@ -109,9 +129,4 @@
 
     </PreferenceCategory>
 
-    <com.bliss.support.preferences.SystemSettingSwitchPreference
-       android:key="notification_guts_kill_app_button"
-       android:title="@string/notification_guts_kill_app_button_title"
-       android:summary="@string/notification_guts_kill_app_button_summary"
-       android:defaultValue="false" />
 </PreferenceScreen>
